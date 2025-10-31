@@ -12,7 +12,7 @@ i18n
     lng: savedLang,
     fallbackLng: "en",
     backend: {
-      loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/translation.json`,
+      loadPath: `${import.meta.env.BASE_URL}locales/ar/translation.json`,
     },
     interpolation: {
       escapeValue: false, // React بيهتم بالأمان تلقائيًا
