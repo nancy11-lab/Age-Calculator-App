@@ -12,15 +12,13 @@ i18n
     lng: savedLang,
     fallbackLng: "en",
     backend: {
-      loadPath: "/locales/ar/translation.json", // مسار ملفات الترجمة
+      loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/translation.json`,
     },
     interpolation: {
       escapeValue: false, // React بيهتم بالأمان تلقائيًا
     },
-    returnObjects : true //عشان تقدر تتعامل مع الكائن الي في en/ar
+    returnObjects: true, //عشان تقدر تتعامل مع الكائن الي في en/ar
   });
-
-
 
 i18n.on("languageChanged", (lng) => {
   if (lng === "ar") {
@@ -28,15 +26,14 @@ i18n.on("languageChanged", (lng) => {
   } else {
     document.body.setAttribute("dir", "ltr");
   }
-  localStorage.setItem("appLang" , lng);
+  localStorage.setItem("appLang", lng);
 });
 
 // تطبيق الاتجاه الافتراضي عند التشغيل
 if (savedLang === "ar") {
-    document.body.setAttribute("dir", "rtl");
-  } else {
-    document.body.setAttribute("dir", "ltr");
-  }
-
+  document.body.setAttribute("dir", "rtl");
+} else {
+  document.body.setAttribute("dir", "ltr");
+}
 
 export default i18n;
