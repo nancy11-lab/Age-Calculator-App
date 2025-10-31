@@ -1,0 +1,131 @@
+{
+  "daysname": {
+    "en": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "ar": [
+      "الأحد",
+      "الاثنين",
+      "الثلاثاء",
+      "الأربعاء",
+      "الخميس",
+      "الجمعة",
+      "السبت"
+    ]
+  },
+  "monthsname": {
+    "en": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "ar": [
+      "يناير",
+      "فبراير",
+      "مارس",
+      "أبريل",
+      "مايو",
+      "يونيو",
+      "يوليو",
+      "أغسطس",
+      "سبتمبر",
+      "أكتوبر",
+      "نوفمبر",
+      "ديسمبر"
+    ]
+  },
+
+  "bornOn": {
+    "en": "Born on",
+    "ar": "ولدت يوم"
+  },
+  "switchTo": {
+    "en": "العربية",
+    "ar": "English"
+  },
+  "appTitle": {
+    "en": "Age Calculator",
+    "ar": "حساب العمر"
+  },
+  "btnCalc": {
+    "en": "Calculate",
+    "ar": "إحسب عمرك"
+  },
+  "weeks": {
+    "en": "Weeks",
+    "ar": "أسابيع"
+  },
+  "days": {
+    "en": "Days",
+    "ar": "أيام"
+  },
+  "day": {
+    "en": "Days",
+    "ar": "يوم"
+  },
+  "months": {
+    "en": "Months",
+    "ar": "أشهر"
+  },
+  "year": {
+    "en": "Year",
+    "ar": "سنة"
+  },
+
+  "errors": {
+    "dayRequired": { "en": "Day is required", "ar": "اليوم مطلوب" },
+    "dayInvalid": {
+      "en": "Enter a valid day (1–31)",
+      "ar": "أدخل يومًا صالحًا (من 1 إلى 31)"
+    },
+    "monthRequired": { "en": "Month is required", "ar": "الشهر مطلوب" },
+    "monthInvalid": {
+      "en": "Enter a valid month (1–12)",
+      "ar": "أدخل شهرًا صالحًا (من 1 إلى 12)"
+    },
+    "yearRequired": { "en": "Year is required", "ar": "السنة مطلوبة" },
+    "yearPositive": {
+      "en": "Enter a valid positive year",
+      "ar": "أدخل سنة موجبة صالحة"
+    },
+    "yearFuture": {
+      "en": "Year cannot be in the future",
+      "ar": "لا يمكن أن تكون السنة في المستقبل"
+    },
+    "yearTooOld": {
+      "en": "Year must be ≥ 1900",
+      "ar": "يجب أن تكون السنة أكبر من أو تساوي 1900"
+    },
+    "yearFourDigits": {
+      "en": "Year must be 4 digits",
+      "ar": "يجب أن تتكون السنة من 4 أرقام"
+    },
+    "dayInvalidForMonth": {
+      "en": "Invalid day for this month",
+      "ar": "اليوم غير صالح"
+    },
+    "emptyFields": {
+      "en": "Please fill in all fields",
+      "ar": "من فضلك املأ جميع الحقول"
+    },
+    "hasOnly":{
+        "en":"has only",
+        "ar":"لديها فقط"
+    }
+  }
+}

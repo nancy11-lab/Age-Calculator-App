@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+:root{
+  --bg-primary:rgb(58,88,208)
+}
+
+html {
+  direction: ltr;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(242,243,244);
+}
+
+.border{
+  border: 1px solid red;
+}
+/*---- Fonts ---**/
+
+@font-face {
+  font-family: "IBM";
+  src: url("/fonts/IBMPlexSansArabic-Light.ttf");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "IBM";
+  src: url("/fonts/IBMPlexSansArabic-Thin.ttf");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "IBM";
+  src: url("/fonts/IBMPlexSansArabic-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "IBM";
+  src: url("/fonts/IBMPlexSansArabic-Bold.ttf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "IBM";
+  src: url("/fonts/IBMPlexSansArabic-Medium.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "IBM";
+  src: url("/fonts/IBMPlexSansArabic-SemiBold.ttf");
+  font-weight: 600;
+}
