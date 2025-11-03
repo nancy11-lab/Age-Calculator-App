@@ -96,8 +96,8 @@ export function AgeCalcProvider({ children }) {
       let daysInMonth;
 
       if (isHijri) {
-        const hijriDate = moment(`${y}/ ${m} / 1`, "iYYYY/iM/iD");
-        daysInMonth = hijriDate.endOf("iMonth").format("iD"); //اخر يوم في الشهر
+        const hijriDate = moment(`${y}/${m}/1`, "iYYYY/iM/iD");//اول يوم في الشهر
+        daysInMonth = hijriDate.endOf("iMonth").iDate(); // اخر يوم فعلى في الشهر كرقم
       } else {
         daysInMonth = new Date(y, m, 0).getDate(); //الميلادي
       }
