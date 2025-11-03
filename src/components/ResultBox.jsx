@@ -78,7 +78,7 @@ export default function ResultBox() {
             >
               {t("bornOn")[currentLang]}({t("gregorian")[currentLang]}):
             </Typography>
-            <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+            <Typography variant="body1" sx={{ fontWeight: "bold" , color:"#000"}}>
               {gregorianDateString}
             </Typography>
           </Box>
@@ -102,7 +102,7 @@ export default function ResultBox() {
             >
               {t("bornOn")[currentLang]}({t("hijri")[currentLang]}):
             </Typography>
-            <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+            <Typography variant="body1" sx={{ fontWeight: "bold" ,color:"#000"}}>
               {hijriDateString}
             </Typography>
           </Box>
