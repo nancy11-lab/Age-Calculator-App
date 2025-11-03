@@ -53,7 +53,7 @@ export default function FormAge() {
               value={day}
               onChange={handleDayChange}
               error={Boolean(dayError)}
-              type="number"
+              type="text"
               placeholder={i18n.language === "en" ? "DD" : " اليوم"}
               sx={{
                 "& .MuiOutlinedInput-root": {
@@ -81,7 +81,7 @@ export default function FormAge() {
               value={month}
               onChange={handleMonthChange}
               error={Boolean(monthError)}
-              type="number"
+              type="text"
               placeholder={i18n.language === "en" ? "MM" : " الشهر"}
               sx={{
                 "& .MuiOutlinedInput-root": {
@@ -107,7 +107,7 @@ export default function FormAge() {
               value={year}
               onChange={handleYearChange}
               error={Boolean(yearError)}
-              type="number"
+              type="text"
               placeholder={i18n.language === "en" ? "YYYY" : " السنة"}
               sx={{
                 "& .MuiOutlinedInput-root": {

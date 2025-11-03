@@ -135,11 +135,14 @@ export function AgeCalcProvider({ children }) {
 
   const handleDayChange = (e) => {
     setDayTouched(true);
-    const valueOfDay = e.target.value;
+    let valueOfDay = e.target.value;
 
-    if (/^\d{0,2}$/.test(valueOfDay)) {
-      setDay(e.target.value);
-    }
+    // السماح فقط بالارقام
+    valueOfDay = valueOfDay.replace(/\D/g, "");
+    // السماح فقط ب 2 ارقام كحد اقصى
+    if (valueOfDay.length > 2) return;
+    setDay(valueOfDay);
+
     let dayErrorMsg = "";
     if (valueOfDay.length === 0) {
       dayErrorMsg = t("errors.dayRequired")[i18n.language];
@@ -162,10 +165,13 @@ export function AgeCalcProvider({ children }) {
 
   const handleMonthChange = (e) => {
     setMonthTouched(true);
-    const valueOfMonth = e.target.value;
-    if (/^\d{0,2}$/.test(valueOfMonth)) {
-      setMonth(e.target.value);
-    }
+    let valueOfMonth = e.target.value;
+    // السماح فقط بالارقام
+    valueOfMonth = valueOfMonth.replace(/\D/g, "");
+    // السماح فقط ب 2 ارقام كحد اقصى
+    if (valueOfMonth.length > 2) return;
+    setMonth(valueOfMonth);
+
     let monthErrorMsg =
       valueOfMonth.length === 0
         ? t("errors.monthRequired")[i18n.language]
@@ -176,10 +182,12 @@ export function AgeCalcProvider({ children }) {
   };
   const handleYearChange = (e) => {
     setYearTouched(true);
-    const valueOfYear = e.target.value;
-    if (/^\d{0,4}$/.test(valueOfYear)) {
-      setYear(valueOfYear);
-    }
+    let valueOfYear = e.target.value;
+    // السماح فقط بالارقام
+    valueOfYear = valueOfYear.replace(/\D/g, "");
+    // السماح فقط ب4 ارقام كحد اقصى
+    if (valueOfYear.length > 4) return;
+    setYear(valueOfYear);
     const currentGregorianYear = new Date().getFullYear();
     const currentHijriYear = parseInt(
       toEnglishDigits(moment().format("iYYYY")),
