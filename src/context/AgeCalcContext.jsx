@@ -96,7 +96,7 @@ export function AgeCalcProvider({ children }) {
       let daysInMonth;
 
       if (isHijri) {
-        const hijriDate = moment(`${y}/${m}/1`, "iYYYY/iM/iD");//اول يوم في الشهر
+        const hijriDate = moment(`${y}/${m}/1`, "iYYYY/iM/iD"); //اول يوم في الشهر
         daysInMonth = hijriDate.endOf("iMonth").iDate(); // اخر يوم فعلى في الشهر كرقم
       } else {
         daysInMonth = new Date(y, m, 0).getDate(); //الميلادي
@@ -220,6 +220,135 @@ export function AgeCalcProvider({ children }) {
     setYearError(yearErrorMsg);
   };
 
+  // const handleCalculatAge = (e) => {
+  //   e.preventDefault();
+
+  //   setDayTouched(true);
+  //   setMonthTouched(true);
+  //   setYearTouched(true);
+
+  //   const { dayErrorMsg, monthErrorMsg, yearErrorMsg } = validateFields(
+  //     day,
+  //     month,
+  //     year
+  //   );
+
+  //   setDayError(dayErrorMsg);
+  //   setMonthError(monthErrorMsg);
+  //   setYearError(yearErrorMsg);
+
+  //   if (dayErrorMsg || monthErrorMsg || yearErrorMsg) {
+  //     // وضع focus على أول حقل فيه خطأ
+  //     if (dayErrorMsg) dayRef.current?.focus();
+  //     else if (monthErrorMsg) monthRef.current?.focus();
+  //     else if (yearErrorMsg) yearRef.current?.focus();
+  //     return;
+  //   }
+
+  //   const d = parseInt(day, 10);
+  //   const m = parseInt(month, 10);
+  //   const y = parseInt(year, 10);
+
+  //   const today = new Date();
+  //   // console.log(today);
+
+  //   let ageYearNow = 0;
+  //   let ageMonthNow = 0;
+  //   let ageDayNow = 0;
+  //   let birthDate;
+
+  //   if (calenderType === "hijri") {
+  //     const daysInMonth = moment(`${y}/${m}/1`, "iYYYY/iM/iD")
+  //       .endOf("iMonth")
+  //       .iDate();
+  //     const dayCorrected = Math.min(d, daysInMonth);
+  //     const hijriBirth = moment(`${y}/${m}/${dayCorrected}`, "iYYYY/iM/iD");
+
+  //     // console.log("higri:" , hijriBirth);
+  //     birthDate = hijriBirth.toDate(); //تحويل التاريخ من هجري الي ميلادى
+  //     // console.log(birthDate);
+
+  //     let todayHijri = moment().format("iYYYY-iM-iD").split("-");
+  //     // console.log(todayHijri);
+  //     let tY = parseInt(toEnglishDigits(todayHijri[0]), 10);
+  //     let tM = parseInt(toEnglishDigits(todayHijri[1]), 10);
+  //     let tD = parseInt(toEnglishDigits(todayHijri[2]), 10);
+  //     ageYearNow = tY - y;
+  //     ageMonthNow = tM - m;
+  //     ageDayNow = tD - d;
+
+  //     if (ageDayNow < 0) {
+  //       ageMonthNow--;
+  //       //ايام الشهر الهجري السابق
+  //       const prevMonthDays = moment(`${tY}-${tM} - 1`, "iYYYY-iM-iD")
+  //         .subtract(1, "iMonth")
+  //         .endOf("iMonth")
+  //         .iDate();
+  //       ageDayNow += prevMonthDays;
+  //     }
+  //     if (ageMonthNow < 0) {
+  //       ageYearNow--;
+  //       ageMonthNow += 12;
+  //     }
+  //   } else {
+  //     //الميلادي
+  //     birthDate = new Date(y, m - 1, d);
+  //     ageYearNow = today.getFullYear() - y;
+  //     ageMonthNow = today.getMonth() + 1 - m;
+  //     ageDayNow = today.getDate() - d;
+
+  //     if (ageDayNow < 0) {
+  //       ageMonthNow--;
+  //       const prevMonthDays = new Date(
+  //         today.getFullYear(),
+  //         today.getMonth(),
+  //         0
+  //       ).getDate();
+  //       ageDayNow += prevMonthDays;
+  //     }
+  //     if (ageMonthNow < 0) {
+  //       ageYearNow--;
+  //       ageMonthNow += 12;
+  //     }
+  //   }
+
+  //   // لايجاد عدد الاسابيع و الشهور والايام
+  //   const diffInMs = today - birthDate;
+  //   const totalDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+  //   const totalWeeks = Math.floor(totalDays / 7);
+  //   const totalMonths = ageYearNow * 12 + ageMonthNow;
+  //   setBirthdayInfo({
+  //     birthDate: birthDate,
+  //     birthDay: d,
+  //     birthMonth: m,
+  //     birthYear: y,
+  //     years: ageYearNow,
+  //     months: ageMonthNow,
+  //     days: ageDayNow,
+  //     totalDays: totalDays,
+  //     totalWeeks: totalWeeks,
+  //     totalMonths: totalMonths,
+  //   });
+
+  //   const noErrors =
+  //     !dayError &&
+  //     !monthError &&
+  //     !yearError &&
+  //     dayTouched &&
+  //     monthTouched &&
+  //     yearTouched;
+
+  //   if (noErrors) {
+  //     setDay("");
+  //     setMonth("");
+  //     setYear("");
+  //     setDayTouched(false);
+  //     setMonthTouched(false);
+  //     setYearTouched(false);
+  //     dayRef.current?.focus();
+  //   }
+  // };
+
   const handleCalculatAge = (e) => {
     e.preventDefault();
 
@@ -238,7 +367,6 @@ export function AgeCalcProvider({ children }) {
     setYearError(yearErrorMsg);
 
     if (dayErrorMsg || monthErrorMsg || yearErrorMsg) {
-      // وضع focus على أول حقل فيه خطأ
       if (dayErrorMsg) dayRef.current?.focus();
       else if (monthErrorMsg) monthRef.current?.focus();
       else if (yearErrorMsg) yearRef.current?.focus();
@@ -249,67 +377,41 @@ export function AgeCalcProvider({ children }) {
     const m = parseInt(month, 10);
     const y = parseInt(year, 10);
 
-    const today = new Date();
-    // console.log(today);
-
-    let ageYearNow = 0;
-    let ageMonthNow = 0;
-    let ageDayNow = 0;
     let birthDate;
 
     if (calenderType === "hijri") {
+      // تأكد من اليوم لا يتجاوز آخر يوم في الشهر الهجري
       const daysInMonth = moment(`${y}/${m}/1`, "iYYYY/iM/iD")
         .endOf("iMonth")
         .iDate();
       const dayCorrected = Math.min(d, daysInMonth);
+
+      // تحويل التاريخ من هجري إلى ميلادي لحساب العمر
       const hijriBirth = moment(`${y}/${m}/${dayCorrected}`, "iYYYY/iM/iD");
-
-      // console.log("higri:" , hijriBirth);
-      birthDate = hijriBirth.toDate(); //تحويل التاريخ من هجري الي ميلادى
-      // console.log(birthDate);
-
-      let todayHijri = moment().format("iYYYY-iM-iD").split("-");
-      // console.log(todayHijri);
-      let tY = parseInt(toEnglishDigits(todayHijri[0]), 10);
-      let tM = parseInt(toEnglishDigits(todayHijri[1]), 10);
-      let tD = parseInt(toEnglishDigits(todayHijri[2]), 10);
-      ageYearNow = tY - y;
-      ageMonthNow = tM - m;
-      ageDayNow = tD - d;
-
-      if (ageDayNow < 0) {
-        ageMonthNow--;
-        //ايام الشهر الهجري السابق
-        const prevMonthDays = moment(`${tY}-${tM} - 1`, "iYYYY-iM-iD")
-          .subtract(1, "iMonth")
-          .endOf("iMonth")
-          .iDate();
-        ageDayNow += prevMonthDays;
-      }
-      if (ageMonthNow < 0) {
-        ageYearNow--;
-        ageMonthNow += 12;
-      }
+      birthDate = hijriBirth.toDate();
     } else {
-      //الميلادي
+      // الميلادي
       birthDate = new Date(y, m - 1, d);
-      ageYearNow = today.getFullYear() - y;
-      ageMonthNow = today.getMonth() + 1 - m;
-      ageDayNow = today.getDate() - d;
+    }
 
-      if (ageDayNow < 0) {
-        ageMonthNow--;
-        const prevMonthDays = new Date(
-          today.getFullYear(),
-          today.getMonth(),
-          0
-        ).getDate();
-        ageDayNow += prevMonthDays;
-      }
-      if (ageMonthNow < 0) {
-        ageYearNow--;
-        ageMonthNow += 12;
-      }
+    // حساب العمر بالميلادي
+    const today = new Date();
+    let ageYearNow = today.getFullYear() - birthDate.getFullYear();
+    let ageMonthNow = today.getMonth() - birthDate.getMonth();
+    let ageDayNow = today.getDate() - birthDate.getDate();
+
+    if (ageDayNow < 0) {
+      ageMonthNow--;
+      const prevMonthDays = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        0
+      ).getDate();
+      ageDayNow += prevMonthDays;
+    }
+    if (ageMonthNow < 0) {
+      ageYearNow--;
+      ageMonthNow += 12;
     }
 
     // لايجاد عدد الاسابيع و الشهور والايام
@@ -317,6 +419,7 @@ export function AgeCalcProvider({ children }) {
     const totalDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
     const totalWeeks = Math.floor(totalDays / 7);
     const totalMonths = ageYearNow * 12 + ageMonthNow;
+
     setBirthdayInfo({
       birthDate: birthDate,
       birthDay: d,
@@ -348,7 +451,6 @@ export function AgeCalcProvider({ children }) {
       dayRef.current?.focus();
     }
   };
-
   return (
     <AgeCalcContext.Provider
       value={{

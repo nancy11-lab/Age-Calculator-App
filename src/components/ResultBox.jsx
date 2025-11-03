@@ -7,22 +7,30 @@ export default function ResultBox() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language;
 
-  const { birthdayInfo } = useAgeCalc();
+  const { birthdayInfo  , calenderType} = useAgeCalc();
+
   // الهجرى
-  const getHijriDateString = () => {
+ const getHijriDateString = () => {
     if (!birthdayInfo.birthDate)
       return `${birthdayInfo.birthDay} / ${birthdayInfo.birthMonth} / ${birthdayInfo.birthYear}`;
-    const hijriMoment = moment(birthdayInfo.birthDate); // الميلادي المحول
+    let hijriMoment;
+    if (calenderType === "hijri") {
+      // لو المستخدم دخل هجري أصلاً، نستخدم التاريخ الهجري المدخل
+      hijriMoment = moment(`${birthdayInfo.birthYear}/${birthdayInfo.birthMonth}/${birthdayInfo.birthDay}`, "iYYYY/iM/iD");
+    } else {
+      // لو ميلادي، نحوله من الميلادي للهجري
+      hijriMoment = moment(birthdayInfo.birthDate);
+    }
     const hijriDay = hijriMoment.iDate();
-    const hijriMonth = hijriMoment.iMonth(); // صفر-based
+    const hijriMonth = hijriMoment.iMonth();
     const hijriYear = hijriMoment.iYear();
-    const hijriDayName =
-      t("daysname")[currentLang][birthdayInfo.birthDate.getDay()];
-    const hijriMonthName = t("hijriMonths")[currentLang][hijriMonth];
-    return `${hijriDayName} , ${hijriMonthName} ${hijriDay} , ${hijriYear}`;
+    const dayName = t("daysname")[currentLang][birthdayInfo.birthDate.getDay()];
+    const monthName = t("hijriMonths")[currentLang][hijriMonth];
+    return `${dayName} , ${monthName} ${hijriDay} , ${hijriYear}`;
   };
 
   const hijriDateString = getHijriDateString();
+
   // الميلادى
   const gregorianDateString = birthdayInfo.birthDate
     ? `${t("daysname")[currentLang][birthdayInfo.birthDate.getDay()]} , ${
@@ -53,9 +61,9 @@ export default function ResultBox() {
             p: "0.5rem",
             display: "flex",
             flexDirection: "column",
-            justifyContent:"center",
-            width:{xs : "100%" , sm:"80%" , md:"60%"},
-            margin:"0 auto"
+            justifyContent: "center",
+            width: { xs: "100%", sm: "80%", md: "60%" },
+            margin: "0 auto",
           }}
         >
           {/* Box-Gregorian */}
@@ -65,7 +73,7 @@ export default function ResultBox() {
               color: "var(--bg-primary)",
               display: "flex",
               gap: "0.2rem",
-              flexDirection:{xs: "column" , sm:"row"}
+              flexDirection: { xs: "column", sm: "row" },
             }}
           >
             <Typography
@@ -78,7 +86,10 @@ export default function ResultBox() {
             >
               {t("bornOn")[currentLang]}({t("gregorian")[currentLang]}):
             </Typography>
-            <Typography variant="body1" sx={{ fontWeight: "bold" , color:"#000"}}>
+            <Typography
+              variant="body1"
+              sx={{ fontWeight: "bold", color: "#000" }}
+            >
               {gregorianDateString}
             </Typography>
           </Box>
@@ -89,7 +100,7 @@ export default function ResultBox() {
               color: "var(--bg-primary)",
               display: "flex",
               gap: "0.2rem",
-              flexDirection:{xs: "column" , sm:"row"}
+              flexDirection: { xs: "column", sm: "row" },
             }}
           >
             <Typography
@@ -102,7 +113,10 @@ export default function ResultBox() {
             >
               {t("bornOn")[currentLang]}({t("hijri")[currentLang]}):
             </Typography>
-            <Typography variant="body1" sx={{ fontWeight: "bold" ,color:"#000"}}>
+            <Typography
+              variant="body1"
+              sx={{ fontWeight: "bold", color: "#000" }}
+            >
               {hijriDateString}
             </Typography>
           </Box>
