@@ -49,6 +49,36 @@
       "ديسمبر"
     ]
   },
+  "hijriMonths": {
+    "en": [
+      "Muharram",
+      "Safar",
+      "Rabi' al-Awwal",
+      "Rabi' al-Thani",
+      "Jumada al-Awwal",
+      "Jumada al-Thani",
+      "Rajab",
+      "Sha'ban",
+      "Ramadan",
+      "Shawwal",
+      "Dhul-Qa'dah",
+      "Dhul-Hijjah"
+    ],
+    "ar": [
+      "محرم",
+      "صفر",
+      "ربيع الأول",
+      "ربيع الآخر",
+      "جمادى الأولى",
+      "جمادى الآخرة",
+      "رجب",
+      "شعبان",
+      "رمضان",
+      "شوال",
+      "ذو القعدة",
+      "ذو الحجة"
+    ]
+  },
 
   "bornOn": {
     "en": "Born on",
@@ -93,6 +123,10 @@
       "en": "Enter a valid day (1–31)",
       "ar": "أدخل يومًا صالحًا (من 1 إلى 31)"
     },
+    "dayInvalidHijri": {
+      "en": "Enter a valid day (1–30 in Hijri months)",
+      "ar": "أدخل يومًا صالحًا (من 1 إلى 30 في التقويم الهجري)"
+    },
     "monthRequired": { "en": "Month is required", "ar": "الشهر مطلوب" },
     "monthInvalid": {
       "en": "Enter a valid month (1–12)",
@@ -111,6 +145,10 @@
       "en": "Year must be ≥ 1900",
       "ar": "يجب أن تكون السنة أكبر من أو تساوي 1900"
     },
+    "yearHjiriTooOld": {
+      "en": "Year must be ≥ 1300",
+      "ar": "يجب أن تكون السنة أكبر من أو تساوي 1300"
+    },
     "yearFourDigits": {
       "en": "Year must be 4 digits",
       "ar": "يجب أن تتكون السنة من 4 أرقام"
@@ -123,9 +161,21 @@
       "en": "Please fill in all fields",
       "ar": "من فضلك املأ جميع الحقول"
     },
-    "hasOnly":{
-        "en":"has only",
-        "ar":"لديها فقط"
+    "hasOnly": {
+      "en": "has only",
+      "ar": "لديها فقط"
     }
+  },
+  "calendarType": {
+    "en": "Calendar Type",
+    "ar": "نوع التقويم"
+  },
+  "gregorian": {
+    "en": "Gregorian",
+    "ar": "ميلادي"
+  },
+  "hijri": {
+    "en": "Hijri",
+    "ar": "هجري"
   }
 }
