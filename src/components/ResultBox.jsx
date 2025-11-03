@@ -1,12 +1,35 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useAgeCalc } from "../context/AgeCalcContext";
+import moment from "moment-hijri";
 
 export default function ResultBox() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language;
 
   const { birthdayInfo } = useAgeCalc();
+  // الهجرى
+  const getHijriDateString = () => {
+    if (!birthdayInfo.birthDate)
+      return `${birthdayInfo.birthDay} / ${birthdayInfo.birthMonth} / ${birthdayInfo.birthYear}`;
+    const hijriMoment = moment(birthdayInfo.birthDate); // الميلادي المحول
+    const hijriDay = hijriMoment.iDate();
+    const hijriMonth = hijriMoment.iMonth(); // صفر-based
+    const hijriYear = hijriMoment.iYear();
+    const hijriDayName =
+      t("daysname")[currentLang][birthdayInfo.birthDate.getDay()];
+    const hijriMonthName = t("hijriMonths")[currentLang][hijriMonth];
+    return `${hijriDayName} , ${hijriMonthName} ${hijriDay} , ${hijriYear}`;
+  };
+
+  const hijriDateString = getHijriDateString();
+  // الميلادى
+  const gregorianDateString = birthdayInfo.birthDate
+    ? `${t("daysname")[currentLang][birthdayInfo.birthDate.getDay()]} , ${
+        t("monthsname")[currentLang][birthdayInfo.birthDate.getMonth()]
+      } ${birthdayInfo.birthDate.getDate()} , ${birthdayInfo.birthDate.getFullYear()}`
+    : `${birthdayInfo.birthDay} / ${birthdayInfo.birthMonth} / ${birthdayInfo.birthYear}`;
+
   return (
     <>
       {/* Container Result Box */}
@@ -24,28 +47,65 @@ export default function ResultBox() {
       >
         {/* ترجمه التاريخ */}
         <Box
-          //   className="border"
+          // className="border"
           sx={{
-            color: "var(--bg-primary)",
-            display: "flex",
-            gap: "0.2rem",
-            justifyContent: { xs: "flex-start", sm: "center" },
+            mb: "1rem",
             p: "0.5rem",
-            flexWrap: "wrap",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent:"center",
+            width:{xs : "100%" , sm:"80%" , md:"60%"},
+            margin:"0 auto"
           }}
         >
-          <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-            {t("bornOn")[currentLang]}:
-          </Typography>
-          <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-            {birthdayInfo.birthDate
-              ? `${
-                  t("daysname")[i18n.language][birthdayInfo.birthDate.getDay()]
-                } , ${
-                  t("monthsname")[i18n.language][birthdayInfo.birthMonth - 1]
-                } ${birthdayInfo.birthDay} , ${birthdayInfo.birthYear}`
-              : "__"}
-          </Typography>
+          {/* Box-Gregorian */}
+          <Box
+            // className="border"
+            sx={{
+              color: "var(--bg-primary)",
+              display: "flex",
+              gap: "0.2rem",
+              flexDirection:{xs: "column" , sm:"row"}
+            }}
+          >
+            <Typography
+              // className="border"
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                width: { xs: "100%", sm: "155px" },
+              }}
+            >
+              {t("bornOn")[currentLang]}({t("gregorian")[currentLang]}):
+            </Typography>
+            <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+              {gregorianDateString}
+            </Typography>
+          </Box>
+          {/* Box-Hijri */}
+          <Box
+            // className="border"
+            sx={{
+              color: "var(--bg-primary)",
+              display: "flex",
+              gap: "0.2rem",
+              flexDirection:{xs: "column" , sm:"row"}
+            }}
+          >
+            <Typography
+              // className="border"
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                width: { xs: "100%", sm: "155px" },
+              }}
+            >
+              {t("bornOn")[currentLang]}({t("hijri")[currentLang]}):
+            </Typography>
+            <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+              {hijriDateString}
+            </Typography>
+          </Box>
         </Box>
         {/* Result Box عدد السنين */}
         <Box
